@@ -4,11 +4,13 @@
  */
 package Servidor;
 
+import Sucursales.Sucursal;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,29 +24,63 @@ public class Servidor extends Thread{
     
     private ServerSocket serverSocket;
     
-
     private ObjectInputStream input;
     
-    private int numeroServidor;
     
-    public Servidor(int puerto,int numeroServidor)
+    private List<Sucursal> listaSucursales;
+    
+    public Servidor(int puerto)
     {
         try {
             this.puerto = puerto;
             serverSocket = new ServerSocket(this.puerto);
-            this.numeroServidor = numeroServidor;
+            
 
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
+
+    public ObjectInputStream getInput() {
+        return input;
+    }
+
+    public void setInput(ObjectInputStream input) {
+        this.input = input;
+    }
+
+    public List<Sucursal> getListaSucursales() {
+        return listaSucursales;
+    }
+
+    public void setListaSucursales(List<Sucursal> listaSucursales) {
+        this.listaSucursales = listaSucursales;
+    }
+
+    public int getPuerto() {
+        return puerto;
+    }
+
+    public void setPuerto(int puerto) {
+        this.puerto = puerto;
+    }
+
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public void setServerSocket(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
+    }
+    
+    
     
     
     @Override
     public void run()
     {
-        System.out.println("Iniciando servidor "+this.numeroServidor);
+        
         while(true)
         {
             try {
