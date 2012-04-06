@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<servidor>
+    <puerto_servidor>1337</puerto_servidor>
+    <transporte_enviar>
+        <paquete>
+            <ip_origen>192.168.1.104</ip_origen>
+            <ip_destino>192.168.1.100</ip_destino>
+            <mensaje>holamund0o0o0o0</mensaje>
+        </paquete>
+        <paquete>
+            <ip_origen>192.168.1.150</ip_origen>
+            <ip_destino>192.168.1.100</ip_destino>
+            <mensaje>chaoooooooooooo</mensaje>
+        </paquete>
+    </transporte_enviar>
+    <transporte_recepcion>
+        <paquete>
+            <ip_origen>192.168.1.120</ip_origen>
+            <ip_destino>192.168.1.114</ip_destino>
+            <mensaje>peruuuuu</mensaje>
+        </paquete>
+    </transporte_recepcion>
+</servidor>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<sucursal>
+    <id_sucursal>1</id_sucursal>
+    <ip_sucursal>192.168.1.100</ip_sucursal>
+    <ip_servidor>192.168.1.100</ip_servidor>
+    <puerto_servidor>1337</puerto_servidor>
+    <ip_anterior>192.168.1.100</ip_anterior>
+    <puerto_anterior>2000</puerto_anterior>
+    <ip_siguiente>192.168.1.100</ip_siguiente>
+    <puerto_siguiente>2001</puerto_siguiente>
+    <cantidad_total_paquetes>6</cantidad_total_paquetes>
+    <paquetes_enviar>
+        <paquete>
+            <ip_destino>192.168.1.105</ip_destino>
+            <mensaje>paquete111111</mensaje>
+        </paquete>
+        <paquete>
+            <ip_destino>192.168.1.106</ip_destino>
+            <mensaje>paquete2222222222</mensaje>
+        </paquete>
+    </paquetes_enviar>
+</sucursal>

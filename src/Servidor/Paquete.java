@@ -4,11 +4,13 @@
  */
 package Servidor;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hector
  */
-public class Paquete {
+public class Paquete implements Serializable{
     
     private String ipOrigen;
     private String ipDestino;

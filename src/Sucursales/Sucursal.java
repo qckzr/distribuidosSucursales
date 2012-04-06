@@ -8,8 +8,11 @@ import Servidor.Paquete;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,7 +20,7 @@ import java.util.List;
  */
 
 
-public class Sucursal {
+public class Sucursal implements Serializable{
     
     private  Socket conexion = null;
 
@@ -35,20 +38,31 @@ public class Sucursal {
     
     private List<Paquete> paquetesPorEnviar;
     
-    private int ipServidor;
+    private String ipServidor;
     
     private int puertoServidor;
     
     private int cantidadTotalPaquetes;
     
+    private JLabel labelTransporteEnviar;
+    
+    private JLabel labelTransporteRecepcion;
+    
+    private int idSucursal;
+    
     
     public Sucursal(){
-        
+        paquetesPorEnviar = new ArrayList<Paquete>();
+        paquetesRecibidos = new ArrayList<Paquete>();
     }
     
-    public Sucursal(int puertoEntradaAnterior, int puertoEntradaSiguiente){
+    public Sucursal(int puertoEntradaAnterior, int puertoEntradaSiguiente, JLabel labelTransporteEnviar,JLabel labelTransporteRecepcion){
         this.puertoAnterior = puertoEntradaAnterior;
         this.puertoSiguiente = puertoEntradaSiguiente;
+        paquetesPorEnviar = new ArrayList<Paquete>();
+        paquetesRecibidos = new ArrayList<Paquete>();
+        this.labelTransporteEnviar = labelTransporteEnviar;
+        this.labelTransporteRecepcion = labelTransporteRecepcion;
     }
     
 
@@ -59,7 +73,7 @@ public class Sucursal {
         this.conexion = conexion;
     }
 
-    public  String getIpSusucursal() {
+    public  String getIpSucursal() {
         return ipSucursal;
     }
 
@@ -126,11 +140,11 @@ public class Sucursal {
         this.cantidadTotalPaquetes = cantidadTotalPaquetes;
     }
 
-    public int getIpServidor() {
+    public String getIpServidor() {
         return ipServidor;
     }
 
-    public void setIpServidor(int ipServidor) {
+    public void setIpServidor(String ipServidor) {
         this.ipServidor = ipServidor;
     }
 
@@ -140,6 +154,30 @@ public class Sucursal {
 
     public void setPuertoServidor(int puertoServidor) {
         this.puertoServidor = puertoServidor;
+    }
+
+    public JLabel getLabelTransporteEnviar() {
+        return labelTransporteEnviar;
+    }
+
+    public void setLabelTransporteEnviar(JLabel labelTransporteEnviar) {
+        this.labelTransporteEnviar = labelTransporteEnviar;
+    }
+
+    public JLabel getLabelTransporteRecepcion() {
+        return labelTransporteRecepcion;
+    }
+
+    public void setLabelTransporteRecepcion(JLabel labelTransporteRecepcion) {
+        this.labelTransporteRecepcion = labelTransporteRecepcion;
+    }
+
+    public int getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
     }
 
    
@@ -213,10 +251,12 @@ public class Sucursal {
 
     
     public void iniciarEspera(){
-        HiloSucursalEspera clienteEspera1 = new HiloSucursalEspera(this,puertoAnterior);
-        HiloSucursalEspera clienteEspera2 = new HiloSucursalEspera(this,puertoSiguiente);
+        HiloSucursalEspera clienteEspera1 = new HiloSucursalEspera(this,puertoAnterior,labelTransporteEnviar);
+        HiloSucursalEspera clienteEspera2 = new HiloSucursalEspera(this,puertoSiguiente,labelTransporteRecepcion);
         clienteEspera1.start();
         clienteEspera2.start();
     }
     
+    
+        
 }
